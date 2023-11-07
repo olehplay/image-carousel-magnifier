@@ -2,74 +2,10 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css"
 />
-<style>
-  .slider-container {
-    width: 100%;
-    max-width: 800px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .slider {
-    display: flex;
-    transition: transform 0.4s ease;
-  }
-
-  .slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 100%;
-  }
-
-  .slide img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  .slider-controls {
-    position: absolute;
-    top: 50%;
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
-
-  .btn {
-    cursor: pointer;
-    line-height: 1;
-    font-size: 18px;
-    font-size: 24px;
-    border: none;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ff8a00;
-    background-color: rgba(30, 38, 53, 0.6);
-    padding: 10px;
-    border-radius: 50%;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .btn:hover,
-  .btn:focus {
-    background-color: rgba(30, 38, 53, 0.4);
-    color: #d27204;
-  }
-
-  .prev-btn {
-    position: absolute;
-    left: 20px;
-    transform: translateY(-50%);
-  }
-
-  .next-btn {
-    position: absolute;
-    right: 20px;
-    transform: translateY(-50%);
-  }
-</style>
+<link
+  rel="stylesheet"
+  href="https://codefinity-content-media-v2.s3.eu-west-1.amazonaws.com/courses/c1087363-9025-4c37-8d5e-983a32a007e9/image-tools-section/image-carousel%2Bmagnifier.css"
+/>
 <body onload="handleOnLoad()">
   <div class="slider-container">
     <div class="slider"></div>
@@ -80,112 +16,26 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
-  <!-- CAROUSEL SCRIPT -->
   <script>
-    // ================ CHANGE IMAGES URLS =============================
-    let handleOnLoad = () => {
-      const galleryItems = [
-        {
-          image:
-            "https://images.theconversation.com/files/442675/original/file-20220126-17-1i0g402.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1356&h=668&fit=crop",
-        },
-        {
-          image:
-            "https://images.unsplash.com/photo-1561542320-9a18cd340469?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a3lpdnxlbnwwfHwwfHx8MA%3D%3D",
-        },
-        {
-          image:
-            "https://cdn.pixabay.com/photo/2023/10/27/18/48/landscape-8346017_1280.jpg",
-        },
-        {
-          image:
-            "https://www.nature.com/immersive/d41586-022-04372-2/assets/FCYxD00tLr/tonga-sh-h-2560x1440.jpg",
-        },
-      ];
-
-      const galleryRef = document.querySelector(".slider");
-
-      const galleryMarkup = createImgMarkup(galleryItems);
-      galleryRef.insertAdjacentHTML("beforeend", galleryMarkup);
-
-      galleryRef.addEventListener("click", onImgContainerClick);
-
-      const lightbox = basicLightbox.create('<img width="800" height="600">', {
-        onShow: (instance) => {
-          window.addEventListener("keydown", onModalClose);
-        },
-        onClose: (instance) => {
-          window.removeEventListener("keydown", onModalClose);
-        },
-      });
-
-      // Function to create image markup for the slider
-      function createImgMarkup(imgs) {
-        return imgs
-          .map(
-            ({ image }) =>
-              `
-              <div class="slide">
-                <a class="gallery__link" href="${image}">
-                  <img
-                    class="gallery__image"
-                    src="${image}"
-                    data-source="${image}"
-                    alt="content"
-                  />
-                </a>
-              </div>
-              `
-          )
-          .join("");
-      }
-
-      // Function to close the lightbox when the 'Escape' key is pressed
-      function onModalClose(evt) {
-        if (evt.code === "Escape") {
-          lightbox.close();
-        }
-      }
-
-      // Function to handle clicks on images in the slider and open them in the lightbox
-      function onImgContainerClick(event) {
-        event.preventDefault();
-
-        if (event.target.classList.contains("gallery__image")) {
-          const imgBigUrl = event.target.dataset.source;
-          if (imgBigUrl) {
-            const imgElement = lightbox.element().querySelector("img");
-            imgElement.setAttribute("src", imgBigUrl);
-            lightbox.show();
-          }
-        }
-      }
-    };
+    // CHANGE THE URLS OF THE IMAGES BELOW
+    const galleryItems = [
+      {
+        image:
+          "https://images.theconversation.com/files/442675/original/file-20220126-17-1i0g402.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1356&h=668&fit=crop",
+      },
+      {
+        image:
+          "https://images.unsplash.com/photo-1561542320-9a18cd340469?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a3lpdnxlbnwwfHwwfHx8MA%3D%3D",
+      },
+      {
+        image:
+          "https://cdn.pixabay.com/photo/2023/10/27/18/48/landscape-8346017_1280.jpg",
+      },
+      {
+        image:
+          "https://www.nature.com/immersive/d41586-022-04372-2/assets/FCYxD00tLr/tonga-sh-h-2560x1440.jpg",
+      },
+    ];
   </script>
-  <!-- SLIDER SCRIPT -->
-  <script>
-    let currentSlide = 0;
-    // Function to move to the previous slide in the slider
-    function moveToPrevSlide() {
-      const slider = document.querySelector(".slider");
-      currentSlide =
-        (currentSlide - 1 + slider.children.length) % slider.children.length;
-      updateSliderPosition();
-    }
-
-    // Function to move to the next slide in the slider
-    function moveToNextSlide() {
-      const slider = document.querySelector(".slider");
-      currentSlide = (currentSlide + 1) % slider.children.length;
-      updateSliderPosition();
-    }
-
-    // Function to update the position of the slider
-    function updateSliderPosition() {
-      const slider = document.querySelector(".slider");
-      const slideWidth = slider.children[0].clientWidth;
-      const translateXValue = -currentSlide * slideWidth;
-      slider.style.transform = `translateX(${translateXValue}px)`;
-    }
-  </script>
+  <script src="https://codefinity-content-media-v2.s3.eu-west-1.amazonaws.com/courses/c1087363-9025-4c37-8d5e-983a32a007e9/image-tools-section/image-carousel%2Bmagnifier.js"></script>
 </body>
